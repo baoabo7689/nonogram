@@ -25,7 +25,7 @@ jobs:
 
       - name: Build Next.js and export static site
         env:
-          BASE_PATH: /nextjs_template
+          BASE_PATH: /nonogram
         run: |
           yarn build
           # Prevent GitHub Pages from ignoring files/folders that start with an underscore

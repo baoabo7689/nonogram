@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import { LanguageProvider } from '@/context/LanguageContext';
 
 export const metadata: Metadata = {
-  title: 'NextJS Template',
+  title: 'Nonogram Puzzle Game',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

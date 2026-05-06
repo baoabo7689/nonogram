@@ -1,7 +1,7 @@
 {
-  "name": "nextjs_template",
+  "name": "nonogram",
   "version": "0.1.0",
-  "description": "NextJS Template project",
+  "description": "Nonogram puzzle game project",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",

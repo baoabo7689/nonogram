@@ -1,10 +1,10 @@
 export const translations = {
   home: {
     title: 'Welcome',
-    description: 'Welcome to the NextJS Template. Start building your app here.',
+    description: 'Welcome to the Nonogram Puzzle Game. Start playing your game here.',
   },
   header: {
-    title: 'NextJS Template',
+    title: 'Nonogram Puzzle Game',
     language: 'Language',
     toggleLanguage: 'Change language',
     contact: 'Contact',
