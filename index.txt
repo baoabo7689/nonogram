@@ -1,5 +1,5 @@
 1:HL["/nonogram/_next/static/css/96a1afc3604dcd0e.css","style",{"crossOrigin":""}]
-0:["LIlnw8I7Y4sFn5CtaK-RD",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/nonogram/_next/static/css/96a1afc3604dcd0e.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+0:["V5HpTs42eYUOl0yOOu41O",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/nonogram/_next/static/css/96a1afc3604dcd0e.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:I[20,["242","static/chunks/242-292a53edf433e4a0.js","185","static/chunks/app/layout-e0a42b4f1d55d0cd.js"],"LanguageProvider"]
 5:I[6841,["242","static/chunks/242-292a53edf433e4a0.js","185","static/chunks/app/layout-e0a42b4f1d55d0cd.js"],""]
 6:I[6954,[],""]
