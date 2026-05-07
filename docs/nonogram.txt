@@ -1,0 +1,74 @@
+
+
+=====================================================================================
+Give detail agorithm to solve puzzle: 
+Nonogram
+You have a grid (rectangle).
+Numbers at the top of each column tell you how many consecutive filled (colored) cells are in that column.
+Numbers on the left of each row do the same for each row.
+Multiple numbers mean multiple blocks, separated by at least one empty cell.
+
+Create a rectangle with size nxm
+over top and left have where to input auto scale textbox number for Nonogram puzzle 
+
+init/random/import/export button
+random: random filled cells then calculate numbers on rows/columns
+validate/solve button 
+Nonogram agorithm
+
+
+
+
+=====================================================================================
+
+Formula: \(\text{Slack} = \text{LineLength} - (\text{SumOfClues} + \text{MinSpacesBetweenClues})\).
+Application: If a block size is larger than the "slack," the middle part of that block is guaranteed to be filled.
+
+Find Row/Column have total [Clues + Min Spaces] = Length => only one way to fill => fill 
+Base on filled cells => detect more related rows/columns to fill more 
+	Filled cell thuộc clue nào [clue đầu, ...]
+[Wiggle Room] khúc đầu/cuối: nếu slide thì sẽ có 1 vùng nhất định filled 
+Generate 1 case cho row/columns nếu không thỏa với các cell đang filled => next 
+
+Bitmasking: AND and OR
+
+
+https://nonograms-katana.fandom.com/wiki/Tips_for_solving
+Simple crosses
+You put crosses where the boxes cannot possibly be.
+
+Overlapping
+
+Spreading
+when you have one or more boxes near the border or a cross. 
+Then you can "spread" that box away from the border or cross depending on how big the clue is. 
+
+
+Forcing
+When you already have some crosses in the line, you can try to fit (force) the clues in the line.
+
+Joining and splitting
+
+
+
+https://nonogramonline.app/blog/how-to-solve-nonogram-step-by-step-guide-for-beginners
+If a clue equals the line length (e.g., 10 in a 10-cell row), fill the entire line.
+If the sum of clues plus minimum required spaces exceeds the line length, apply immediate overlaps (see next step).
+
+For a line of length L with a run of length N, if you slide the run from leftmost to rightmost legal positions, 
+any cell that stays filled in all positions is guaranteed.
+
+After each row update, scan the affected columns for new overlaps, then return to rows. Repeat.
+
+
+
+
+=====================================================================================
+
+
+
+
+
+
+
+

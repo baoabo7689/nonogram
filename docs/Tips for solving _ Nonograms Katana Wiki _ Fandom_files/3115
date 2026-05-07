@@ -1,0 +1,294 @@
+"use strict";(function(){try{var record=function(name,detail){aps.get(accountId).queue.push(new CustomEvent(name,{detail}))};const accountId="3115";window._aps=window._aps||new Map;const aps=window._aps;aps.has(accountId)||aps.set(accountId,{queue:[],store:new Map}),record("_config/requestViewerCountry/define",{"code":"VN"});record("analytics/sampling/set",{"rates":{"error":0.001,"status":0.0001}});record("a3pes/video/activate",{"restrictions":{"allow":{"accountTypes":["ssw"]},"block":{"accounts":["e32f1423-28bc-43ed-8ab0-5ae6b4449cf8"]}}});record("a3pes/banner/activate",{"restrictions":{"allow":{"rate":0.5}}});record("tid/config/set",{"enabled":true});record("a3pes/video/activate",{});record("idVendors/enabled/set",{"bidParameterKeys":["liveintent","merkle","intimateMerger","pair","amx","33across","fTrack","captify","publink","anonymised","quantcast","idPlus","unifiedid","ddb_key_638","fabrick","uid","criteo","yahoo","liveRamp","id5","pubcommon","audigent","lightPublisherAudiences","lotame"]});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"33across","allowedRegions":["JP","US","AU","CA"],"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+["JP","US","AU","CA"]?["JP","US","AU","CA"].includes("VN")&&(function anonymous(
+) {
+var lexiconPropertyId = '0010b00001rqjHHAAY';
+if (lexiconPropertyId && lexiconPropertyId.charAt(0) !== '%') {
+  if (!window._33AcrossIdMappingsProvider) {
+    createlexiconScript(lexiconPropertyId);
+  }
+}
+
+function createlexiconScript(id) {
+  var lexiconScript = document.createElement('script');
+  lexiconScript.src = 'https://cdn-ima.33across.com/ima.js';
+  lexiconScript['onload'] = function (e) {
+    const my33AcrossIdProvider = new _33AcrossIdMappingsProvider({
+      pid: id,
+      refreshInSeconds: 60 * 60 * 8,
+      expires: 90,
+      src: 'aps'
+    });
+
+    my33AcrossIdProvider.fetch();
+  };
+  document.head.appendChild(lexiconScript);
+}
+})():(!undefined||undefined&&!undefined.includes("VN"))&&(function anonymous(
+) {
+var lexiconPropertyId = '0010b00001rqjHHAAY';
+if (lexiconPropertyId && lexiconPropertyId.charAt(0) !== '%') {
+  if (!window._33AcrossIdMappingsProvider) {
+    createlexiconScript(lexiconPropertyId);
+  }
+}
+
+function createlexiconScript(id) {
+  var lexiconScript = document.createElement('script');
+  lexiconScript.src = 'https://cdn-ima.33across.com/ima.js';
+  lexiconScript['onload'] = function (e) {
+    const my33AcrossIdProvider = new _33AcrossIdMappingsProvider({
+      pid: id,
+      refreshInSeconds: 60 * 60 * 8,
+      expires: 90,
+      src: 'aps'
+    });
+
+    my33AcrossIdProvider.fetch();
+  };
+  document.head.appendChild(lexiconScript);
+}
+})()
+},"defaultPropertyId":"0010b00001rqjHHAAY"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"audigent","allowedRegions":undefined,"blockedRegions":["BR"],"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+var audigentPropertyId = '158';
+if (audigentPropertyId && audigentPropertyId.charAt(0) !== '%') {
+  (function (H, A, D, R, O, N, i, d) {
+    H[N] = H[N] || function () { (H[N].q = H[N].q || []).push(arguments) };
+    i = A.createElement(D); A.async = true;
+    i.src = R + "?url=" + encodeURIComponent(H.location.href) + "&ref=" + encodeURIComponent(A.referrer) +
+      "&_it=amazon&partner_id=" + O; d = A.getElementsByTagName(D)[0]; d.parentNode.insertBefore(i, d);
+  })(window, document, 'script', 'https://cdn.hadronid.net/hadron.js', audigentPropertyId, 'ha');
+}
+})():(!["BR"]||["BR"]&&!["BR"].includes("VN"))&&(function anonymous(
+) {
+var audigentPropertyId = '158';
+if (audigentPropertyId && audigentPropertyId.charAt(0) !== '%') {
+  (function (H, A, D, R, O, N, i, d) {
+    H[N] = H[N] || function () { (H[N].q = H[N].q || []).push(arguments) };
+    i = A.createElement(D); A.async = true;
+    i.src = R + "?url=" + encodeURIComponent(H.location.href) + "&ref=" + encodeURIComponent(A.referrer) +
+      "&_it=amazon&partner_id=" + O; d = A.getElementsByTagName(D)[0]; d.parentNode.insertBefore(i, d);
+  })(window, document, 'script', 'https://cdn.hadronid.net/hadron.js', audigentPropertyId, 'ha');
+}
+})()
+},"defaultPropertyId":"158"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"id5","allowedRegions":undefined,"blockedRegions":["BR"],"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__id5__ = false;}})();
+})():(!["BR"]||["BR"]&&!["BR"].includes("VN"))&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__id5__ = false;}})();
+})()
+},"defaultPropertyId":"1139"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"liveRamp","allowedRegions":undefined,"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+var liveRampPropertyId = '2f928425-1fbe-4680-b67a-c5f5ad831378';
+if (!window.launchPad && liveRampPropertyId && liveRampPropertyId.charAt(0) !== '%') {
+  var liverampScript = document.createElement('script');
+  liverampScript.setAttribute('async', 'async');
+  liverampScript.setAttribute('defer', 'defer');
+  liverampScript.setAttribute('src','https://launchpad-wrapper.privacymanager.io/' + liveRampPropertyId + '/launchpad-liveramp.js');
+  document.head.appendChild(liverampScript);
+}
+})():(!undefined||undefined&&!undefined.includes("VN"))&&(function anonymous(
+) {
+var liveRampPropertyId = '2f928425-1fbe-4680-b67a-c5f5ad831378';
+if (!window.launchPad && liveRampPropertyId && liveRampPropertyId.charAt(0) !== '%') {
+  var liverampScript = document.createElement('script');
+  liverampScript.setAttribute('async', 'async');
+  liverampScript.setAttribute('defer', 'defer');
+  liverampScript.setAttribute('src','https://launchpad-wrapper.privacymanager.io/' + liveRampPropertyId + '/launchpad-liveramp.js');
+  document.head.appendChild(liverampScript);
+}
+})()
+},"defaultPropertyId":"2f928425-1fbe-4680-b67a-c5f5ad831378"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"lotame","allowedRegions":undefined,"blockedRegions":["AR","BZ","BO","BR","CL","CO","CR","CU","DO","EC","SV","GT","GY","HT","HN","MX","NI","PA","PY","PE","SR","UY","VE","AW","GF","PR"],"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+if (!window['lotame_sync_16576']) {
+  var lotameClientId = '16576';
+
+  initLotame(lotameClientId);
+  createLotameScript(lotameClientId);
+
+  function initLotame(propertyId) {
+    var lotameConfig = {};
+    var namespace = window['lotame_sync_' + propertyId] = {};
+    namespace.config = lotameConfig;
+    namespace.data = {};
+    namespace.cmd = namespace.cmd || [];
+
+    namespace.cmd.push(function () {
+      namespace.sync();
+    });
+  };
+
+  function createLotameScript(propertyId) {
+    var lotameSyncUrl = "https://tags.crwdcntrl.net/lt/c/" + propertyId + "/sync.min.js";
+    var lotameScriptTag = document.createElement('script');
+    lotameScriptTag.src = lotameSyncUrl;
+    document.head.appendChild(lotameScriptTag);
+  };
+}
+})():(!["AR","BZ","BO","BR","CL","CO","CR","CU","DO","EC","SV","GT","GY","HT","HN","MX","NI","PA","PY","PE","SR","UY","VE","AW","GF","PR"]||["AR","BZ","BO","BR","CL","CO","CR","CU","DO","EC","SV","GT","GY","HT","HN","MX","NI","PA","PY","PE","SR","UY","VE","AW","GF","PR"]&&!["AR","BZ","BO","BR","CL","CO","CR","CU","DO","EC","SV","GT","GY","HT","HN","MX","NI","PA","PY","PE","SR","UY","VE","AW","GF","PR"].includes("VN"))&&(function anonymous(
+) {
+if (!window['lotame_sync_16576']) {
+  var lotameClientId = '16576';
+
+  initLotame(lotameClientId);
+  createLotameScript(lotameClientId);
+
+  function initLotame(propertyId) {
+    var lotameConfig = {};
+    var namespace = window['lotame_sync_' + propertyId] = {};
+    namespace.config = lotameConfig;
+    namespace.data = {};
+    namespace.cmd = namespace.cmd || [];
+
+    namespace.cmd.push(function () {
+      namespace.sync();
+    });
+  };
+
+  function createLotameScript(propertyId) {
+    var lotameSyncUrl = "https://tags.crwdcntrl.net/lt/c/" + propertyId + "/sync.min.js";
+    var lotameScriptTag = document.createElement('script');
+    lotameScriptTag.src = lotameSyncUrl;
+    document.head.appendChild(lotameScriptTag);
+  };
+}
+})()
+},"defaultPropertyId":undefined});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"pubcommon","allowedRegions":undefined,"blockedRegions":["BR"],"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+if (!window.PublisherCommonId) {
+  var pubcommonScript = document.createElement('script');
+  pubcommonScript.src = '//secure.cdn.fastclick.net/js/pubcid/latest/pubcid.min.js';
+  document.head.appendChild(pubcommonScript);
+}
+})():(!["BR"]||["BR"]&&!["BR"].includes("VN"))&&(function anonymous(
+) {
+if (!window.PublisherCommonId) {
+  var pubcommonScript = document.createElement('script');
+  pubcommonScript.src = '//secure.cdn.fastclick.net/js/pubcid/latest/pubcid.min.js';
+  document.head.appendChild(pubcommonScript);
+}
+})()
+},"defaultPropertyId":undefined});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"yahoo","allowedRegions":["US"],"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+["US"]?["US"].includes("VN")&&(function anonymous(
+) {
+var yahooPropertyId = '58833';
+const params = { 
+  pixelId: yahooPropertyId,
+};
+
+function createYahooScript () {
+  var yahooScript = document.createElement('script');
+  yahooScript.src = '//connectid.analytics.yahoo.com/connectId.js';
+  yahooScript['onload'] = function(e) { connectId.getIds(params,function (val) { window.apstag.__yahoo = true }) };
+  document.head.appendChild(yahooScript);
+}
+
+if (yahooPropertyId && yahooPropertyId.charAt(0) !== '%') {
+  if (!window.connectId) {
+    createYahooScript();
+  }
+};
+})():(!undefined||undefined&&!undefined.includes("VN"))&&(function anonymous(
+) {
+var yahooPropertyId = '58833';
+const params = { 
+  pixelId: yahooPropertyId,
+};
+
+function createYahooScript () {
+  var yahooScript = document.createElement('script');
+  yahooScript.src = '//connectid.analytics.yahoo.com/connectId.js';
+  yahooScript['onload'] = function(e) { connectId.getIds(params,function (val) { window.apstag.__yahoo = true }) };
+  document.head.appendChild(yahooScript);
+}
+
+if (yahooPropertyId && yahooPropertyId.charAt(0) !== '%') {
+  if (!window.connectId) {
+    createYahooScript();
+  }
+};
+})()
+},"defaultPropertyId":"58833"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"confiant","allowedRegions":undefined,"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__creative_scan__ = false;}})();
+})():(!undefined||undefined&&!undefined.includes("VN"))&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__creative_scan__ = false;}})();
+})()
+},"defaultPropertyId":"d-aIf3ibf0cYxCLB1HTWfBQOFEA"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"liveintent","allowedRegions":undefined,"blockedRegions":["BR"],"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__liveintent__ = false;}})();
+})():(!["BR"]||["BR"]&&!["BR"].includes("VN"))&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__liveintent__ = false;}})();
+})()
+},"defaultPropertyId":"0011600001vLOi2AAG"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"wunderkind","allowedRegions":undefined,"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[{"hostnames":["starvstheforcesofevil.fandom.com","the-handmaids-tale.fandom.com","dragonvale.fandom.com","eq2.fandom.com","theloudhouse.fandom.com","fireemblem.fandom.com","runescape.fandom.com","forgottenrealms.fandom.com","the100.fandom.com","residentevil.fandom.com","streetfighter.fandom.com","wikia-dev.pl","giantbomb.com","hunterxhunter.fandom.com","digimon.fandom.com","wikia-dev.us","greysanatomy.fandom.com","gamespot.com","futhead.com","memory-alpha.org","megamitensei.fandom.com","wikia-dev.com","ffxiclopedia.org","sims.fandom.com","lego.fandom.com","metacritic.com","godofwar.fandom.com","detroit-become-human.fandom.com","stargate.fandom.com","overwatch.fandom.com","beyblade.fandom.com","criminalminds.fandom.com","nanatsu-no-taizai.fandom.com","megaman.fandom.com","wowwiki.com","fategrandorder.fandom.com","westworld.fandom.com","warriors.fandom.com","animalcrossing.fandom.com","arrow.fandom.com","kirby.fandom.com","orange-is-the-new-black.fandom.com","warhammerfantasy.fandom.com","attackontitan.fandom.com","freddy-fazbears-pizza.fandom.com","backyardchickens.com","tibia.fandom.com","youtube.fandom.com","degrassi.fandom.com","criticalrole.fandom.com","whitewolf.fandom.com","lawandorder.fandom.com","ageofempires.fandom.com","bigbangtheory.fandom.com","clashofclans.fandom.com","breakingbad.fandom.com","muthead.com","evchk.fandom.com","borderlands.fandom.com","shadowhunters.fandom.com","ffxiclopedia.fandom.com","gamepedia.com","battlefield.fandom.com","ninjago.fandom.com","metalgear.fandom.com","monsterhunter.fandom.com","survivor.fandom.com","prowrestling.fandom.com","dnd5e.fandom.com","teenwolf.fandom.com","wikia.com","cordcuttersnews.com","grimm.fandom.com","mortalkombat.fandom.com","rainbowsix.fandom.com","friends.fandom.com","wingsoffire.fandom.com","nfs.fandom.com","tvguide.com","starcraft.fandom.com","plantsvszombies.fandom.com","gta.fandom.com","warframe.fandom.com","fairytail.fandom.com","ben10.fandom.com","farcry.fandom.com","theoffice.fandom.com","thesandtrap.com","kamenrider.fandom.com"],"script":undefined,"propertyId":"8673"}],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+var wunderkindPropertyId = '8673';
+if (!window.bouncex && (wunderkindPropertyId && wunderkindPropertyId.charAt(0) !== '%')) {
+  (function (d) {
+    var e = d.createElement('script');
+    e.src = d.location.protocol + '//tag.wknd.ai/' + wunderkindPropertyId + '/i.js';
+    e.async = true;
+    d.getElementsByTagName('head')[0].appendChild(e);
+  }(document));
+}
+})():(!undefined||undefined&&!undefined.includes("VN"))&&(function anonymous(
+) {
+var wunderkindPropertyId = '8673';
+if (!window.bouncex && (wunderkindPropertyId && wunderkindPropertyId.charAt(0) !== '%')) {
+  (function (d) {
+    var e = d.createElement('script');
+    e.src = d.location.protocol + '//tag.wknd.ai/' + wunderkindPropertyId + '/i.js';
+    e.async = true;
+    d.getElementsByTagName('head')[0].appendChild(e);
+  }(document));
+}
+})()
+},"defaultPropertyId":"8673"});record("idVendors/integration/execute",{"accountId":"3115","sourceId":"3115","countryCode":"VN","vendorId":"anonymised","allowedRegions":undefined,"blockedRegions":["BR"],"vendorLoadedSampleRate":5,"domainPrecedence":[{"hostnames":["gamespot.com","metacritic.com","fandom.com","tvguide.com"],"script":function anonymous(
+) {
+undefined?undefined.includes("VN")&&(function anonymous(
+) {
+var anonymisedPropertyId = 'MjI2MQ=='
+if(anonymisedPropertyId && (anonymisedPropertyId.charAt(0) !== '%') && !document.getElementById('idward-plugin-js')) {
+    var anonymisedScript = document.createElement('script');
+    anonymisedScript.setAttribute('async', '');
+    anonymisedScript.src = 'https://static.anonymised.io/light/loader.js?ref=aps&d='+document.location.hostname;
+    anonymisedScript.id = 'idward-plugin-js';
+    anonymisedScript.setAttribute('idw_client_id', anonymisedPropertyId);
+    anonymisedScript.setAttribute('idw_hide_button', 'true');
+    document.head.appendChild(anonymisedScript);
+}
+})():(!["BR"]||["BR"]&&!["BR"].includes("VN"))&&(function anonymous(
+) {
+var anonymisedPropertyId = 'MjI2MQ=='
+if(anonymisedPropertyId && (anonymisedPropertyId.charAt(0) !== '%') && !document.getElementById('idward-plugin-js')) {
+    var anonymisedScript = document.createElement('script');
+    anonymisedScript.setAttribute('async', '');
+    anonymisedScript.src = 'https://static.anonymised.io/light/loader.js?ref=aps&d='+document.location.hostname;
+    anonymisedScript.id = 'idward-plugin-js';
+    anonymisedScript.setAttribute('idw_client_id', anonymisedPropertyId);
+    anonymisedScript.setAttribute('idw_hide_button', 'true');
+    document.head.appendChild(anonymisedScript);
+}
+})()
+},"propertyId":"MjI2MQ=="}],"defaultScript":undefined,"defaultPropertyId":undefined});record("_config/config/didLoad",undefined)}catch(e){console.error(e)}})();
