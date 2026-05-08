@@ -17,6 +17,16 @@ validate/solve button
 Nonogram agorithm
 
 
+create NonogramGridComponent: to render NonogramGridModel 
+with colClues is multi line textboxes can increase height when input new line, they on the top of grid 
+with rowClues is textboxes can increase width when input new clue, they on the left of grid 
+grid: rows*cols cells textboxes with background color: 
+empty=white, filled=black, crossed=blue
+input value empty=empty, filled=F, crossed=X
+
+
+
+
 
 
 =====================================================================================

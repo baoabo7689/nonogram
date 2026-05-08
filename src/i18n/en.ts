@@ -15,6 +15,19 @@ export const translations = {
     common: 'Common',
     commonHelps: ['Sample help for common section.'],
   },
+  interaction: {
+    initTitle: 'Init',
+    random: 'Random',
+    import: 'Import',
+    manual: 'Manual',
+    rows: 'Rows',
+    columns: 'Columns',
+
+    functionalTitle: 'Functional',
+    validate: 'Validate',
+    export: 'Export',
+    solve: 'Solve',
+  },
 };
 
 export default { translations };
