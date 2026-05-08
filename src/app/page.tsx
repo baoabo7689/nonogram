@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { createEmptyNonogramGrid, createRandomNonogramGrid } from '@/models/NonogramGridModel';
 import NonogramGridComponent from '@/components/NonogramGridComponent';
 import { exportNonogramGrid, importNonogramGrid } from '@/utilities/ioUtilities';
+import { validateNonogramGrid } from '@/utilities/validateUtilities';
 import ImportComponent from '@/components/ImportComponent';
 
 export default function HomePage() {
@@ -19,7 +20,10 @@ export default function HomePage() {
   const handleRandom = () => {
     setGrid(createRandomNonogramGrid(rowCount, colCount));
   };
-  const handleValidate = () => {};
+  const handleValidate = () => {
+    const result = validateNonogramGrid(grid);
+    setMessage(result.valid ? 'Valid!' : result.errors.join('\n'));
+  };
   const handleExport = () => {
     setMessage(exportNonogramGrid(grid));
   };
