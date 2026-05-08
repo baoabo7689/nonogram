@@ -27,6 +27,10 @@ export const translations = {
     validate: 'Validate',
     export: 'Export',
     solve: 'Solve',
+
+    cancel: 'Cancel',
+    importPlaceholder: 'Paste your nonogram data here...',
+    load: 'Load',
   },
   body: {
     messageTitle: 'Message',

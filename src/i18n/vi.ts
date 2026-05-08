@@ -27,6 +27,10 @@ export const translations = {
     validate: 'Xác thực',
     export: 'Xuất',
     solve: 'Giải',
+
+    cancel: 'Hủy',
+    importPlaceholder: 'Dán dữ liệu nonogram của bạn vào đây...',
+    load: 'Tải',
   },
   body: {
     messageTitle: 'Thông điệp',

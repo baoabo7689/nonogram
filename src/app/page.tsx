@@ -4,6 +4,8 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useState } from 'react';
 import { createEmptyNonogramGrid, createRandomNonogramGrid } from '@/models/NonogramGridModel';
 import NonogramGridComponent from '@/components/NonogramGridComponent';
+import { exportNonogramGrid, importNonogramGrid } from '@/utilities/ioUtilities';
+import ImportComponent from '@/components/ImportComponent';
 
 export default function HomePage() {
   const { translations } = useLanguage();
@@ -18,7 +20,22 @@ export default function HomePage() {
     setGrid(createRandomNonogramGrid(rowCount, colCount));
   };
   const handleValidate = () => {};
-  const handleExport = () => {};
+  const handleExport = () => {
+    setMessage(exportNonogramGrid(grid));
+  };
+  const handleImport = (importedGrid: string) => {
+    try {
+      const parsedGrid = importNonogramGrid(importedGrid);
+      setGrid(parsedGrid);
+      setRowCount(parsedGrid.rows);
+      setColCount(parsedGrid.cols);
+      setMessage(importedGrid);
+      return true;
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Failed to import nonogram data.');
+      return false;
+    }
+  };
   const handleSolve = () => {};
 
   return (
@@ -124,6 +141,12 @@ export default function HomePage() {
             />
           </div>
         </div>
+        <ImportComponent
+          isOpen={isImportOpen}
+          onClose={() => setIsImportOpen(false)}
+          onLoad={handleImport}
+          translations={translations}
+        />
       </section>
     </main>
   );
