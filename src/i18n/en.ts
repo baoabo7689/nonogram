@@ -28,6 +28,10 @@ export const translations = {
     export: 'Export',
     solve: 'Solve',
   },
+  body: {
+    messageTitle: 'Message',
+    messagePlaceholder: 'Message...',
+  },
 };
 
 export default { translations };

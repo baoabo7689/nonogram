@@ -28,6 +28,10 @@ export const translations = {
     export: 'Xuất',
     solve: 'Giải',
   },
+  body: {
+    messageTitle: 'Thông điệp',
+    messagePlaceholder: 'Thông điệp...',
+  },
 };
 
 export default { translations };
