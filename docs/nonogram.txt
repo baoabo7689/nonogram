@@ -25,6 +25,14 @@ empty=white, filled=black, crossed=blue
 input value empty=empty, filled=F, crossed=X
 
 
+add method fullLength to solve clues with: 
+example if row clue have total value [with space between clues] equal row length then
+that row should fill in order of clue from begin [col = 0] 
+and the same rule with colclues 
+
+
+when #sym:solveFullLengthLine  if crossed cell already filled, we should mark error in that clue, 
+and return error messages to #sym:FullLengthResult 
 
 
 

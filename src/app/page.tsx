@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { createEmptyNonogramGrid, createRandomNonogramGrid } from '@/models/NonogramGridModel';
 import NonogramGridComponent from '@/components/NonogramGridComponent';
 import { exportNonogramGrid, importNonogramGrid } from '@/utilities/ioUtilities';
+import { solveNonogram } from '@/utilities/solutionUtilities';
 import { validateNonogramGrid } from '@/utilities/validateUtilities';
 import ImportComponent from '@/components/ImportComponent';
 
@@ -40,7 +41,11 @@ export default function HomePage() {
       return false;
     }
   };
-  const handleSolve = () => {};
+  const handleSolve = () => {
+    const result = solveNonogram(grid);
+    setGrid(result.model);
+    setMessage(result.message);
+  };
 
   return (
     <main className="flex-1 bg-gradient-to-br from-blue-100 via-white to-pink-100">

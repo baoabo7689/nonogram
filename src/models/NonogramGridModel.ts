@@ -39,7 +39,19 @@ export function createRandomNonogramGrid(
       '\n'
     )
   );
-  return { rows, cols, cells, rowClues, colClues };
+
+  var result = { rows, cols, cells, rowClues, colClues };
+  result = clearNonogramGrid(result); // start with empty grid
+  return result;
+}
+
+export function clearNonogramGrid(model: NonogramGridModel): NonogramGridModel {
+  return {
+    ...model,
+    cells: Array.from({ length: model.rows }, () =>
+      Array.from({ length: model.cols }, () => 'empty' as CellState)
+    ),
+  };
 }
 
 export function createEmptyNonogramGrid(rows: number, cols: number): NonogramGridModel {
