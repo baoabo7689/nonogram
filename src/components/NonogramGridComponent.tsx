@@ -8,7 +8,7 @@ interface Props {
   onChange: (model: NonogramGridModel) => void;
 }
 
-const CELL_SIZE = 32; // px
+const CELL_SIZE = 24; // px
 
 const cellBg: Record<CellState, string> = {
   empty: 'bg-white',
@@ -84,11 +84,10 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
     el.style.height = `${el.scrollHeight}px`;
   };
 
-  // Auto-resize input width
+  // Auto-resize input width based on character count
   const autoResizeInput = (el: HTMLInputElement | null) => {
     if (!el) return;
-    el.style.width = '0';
-    el.style.width = `${el.scrollWidth}px`;
+    el.style.width = `${Math.max(el.value.length + 1, 3)}ch`;
   };
 
   return (
