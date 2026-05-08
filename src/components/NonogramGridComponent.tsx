@@ -123,7 +123,14 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
           {cells.map((row, r) => (
             <tr key={r}>
               {/* row clue */}
-              <td style={{ padding: 1, verticalAlign: 'middle', whiteSpace: 'nowrap' }}>
+              <td
+                style={{
+                  padding: 1,
+                  verticalAlign: 'middle',
+                  whiteSpace: 'nowrap',
+                  textAlign: 'right',
+                }}
+              >
                 <input
                   ref={(el) => autoResizeInput(el)}
                   type="text"
@@ -133,7 +140,7 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
                     handleRowClueChange(r, e.target.value);
                   }}
                   className={`
-                    border border-gray-300 rounded text-center text-xs p-0.5
+                    ml-auto block border border-gray-300 rounded text-center text-xs p-0.5
                     focus:outline-none focus:ring-1 focus:ring-blue-400
                   `}
                   style={{ minWidth: CELL_SIZE, height: CELL_SIZE }}

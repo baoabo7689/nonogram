@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import { useState } from 'react';
-import { createEmptyNonogramGrid } from '@/models/NonogramGridModel';
+import { createEmptyNonogramGrid, createRandomNonogramGrid } from '@/models/NonogramGridModel';
 import NonogramGridComponent from '@/components/NonogramGridComponent';
 
 export default function HomePage() {
@@ -14,7 +14,9 @@ export default function HomePage() {
   const [message, setMessage] = useState('');
 
   const clampDimension = (value: number) => Math.max(1, value || 1);
-  const handleRandom = () => {};
+  const handleRandom = () => {
+    setGrid(createRandomNonogramGrid(rowCount, colCount));
+  };
   const handleValidate = () => {};
   const handleExport = () => {};
   const handleSolve = () => {};
