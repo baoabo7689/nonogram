@@ -18,8 +18,13 @@ function parseClueNumbers(clue: string): number[] {
     .trim()
     .split(/[\s\n]+/)
     .filter(Boolean);
-  if (parts.length === 0 || (parts.length === 1 && parts[0] === '0')) return [];
-  return parts.map(Number);
+  let start = 0;
+  let end = parts.length - 1;
+  if (start <= end && /^\d+X$/i.test(parts[start])) start++;
+  if (end >= start && /^\d+X$/i.test(parts[end])) end--;
+  const numberParts = parts.slice(start, end + 1);
+  if (numberParts.length === 0 || (numberParts.length === 1 && numberParts[0] === '0')) return [];
+  return numberParts.map(Number);
 }
 
 /**
