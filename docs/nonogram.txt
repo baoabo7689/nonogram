@@ -34,6 +34,8 @@ and the same rule with colclues
 when #sym:solveFullLengthLine  if crossed cell already filled, we should mark error in that clue, 
 and return error messages to #sym:FullLengthResult 
 
+#sym:solveFullLength_Extend  we can reduce line length by reduce consecutive crossed cells right at begin and end
+
 
 
 

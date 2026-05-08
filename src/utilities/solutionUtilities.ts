@@ -1,5 +1,5 @@
 import { NonogramGridModel } from '@/models/NonogramGridModel';
-import { solveFullLength } from '@/utilities/solutions/fullLengthTrick';
+import { solveFullLength_Extend } from '@/utilities/solutions/extFullLengthTrick';
 
 export interface SolveResult {
   solved: boolean;
@@ -8,7 +8,7 @@ export interface SolveResult {
 }
 
 export function solveNonogram(model: NonogramGridModel): SolveResult {
-  const result = solveFullLength(model);
+  const result = solveFullLength_Extend(model);
 
   return {
     solved: result.errors.length === 0,
