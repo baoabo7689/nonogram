@@ -20,15 +20,18 @@ export default function HomePage() {
   return (
     <main className="flex-1 bg-gradient-to-br from-blue-100 via-white to-pink-100">
       <section className="w-full h-full border border-gray-200 bg-white shadow-xl pl-6">
-        {/* Init Block */}
-        <div className="mt-3 mb-3">
-          <span className="flex flex-wrap items-center gap-4">
-            <span className="label-interaction">
-              <h2 className="text-2xl font-bold tracking-tight drop-shadow">
-                {translations.interaction.initTitle}
-              </h2>
-            </span>
-
+        {/* Init + Functional Blocks — shared grid for perfect column alignment */}
+        <div
+          className="mt-3 mb-3 grid items-center gap-x-4 gap-y-3"
+          style={{ gridTemplateColumns: '120px 300px 150px 150px 150px' }}
+        >
+          {/* Init row */}
+          <span className="label-interaction">
+            <h2 className="text-2xl font-bold tracking-tight drop-shadow text-right">
+              {translations.interaction.initTitle}
+            </h2>
+          </span>
+          <div className="flex items-center gap-4">
             <label className="flex items-center gap-2 text-sm text-gray-700">
               {translations.interaction.rows}
               <input
@@ -39,7 +42,6 @@ export default function HomePage() {
                 className="w-20 rounded border border-gray-300 px-2 py-1"
               />
             </label>
-
             <label className="flex items-center gap-2 text-sm text-gray-700">
               {translations.interaction.columns}
               <input
@@ -50,61 +52,56 @@ export default function HomePage() {
                 className="w-20 rounded border border-gray-300 px-2 py-1"
               />
             </label>
-
-            <button
-              className="btn-interaction"
-              title={translations.interaction.random}
-              onClick={handleRandom}
-            >
-              {translations.interaction.random}
-            </button>
-            <button
-              className="btn-interaction"
-              title={translations.interaction.import}
-              onClick={() => setIsImportOpen(true)}
-            >
-              {translations.interaction.import}
-            </button>
-            <button
-              className="btn-interaction"
-              title={translations.interaction.manual}
-              onClick={() => setGrid(createEmptyNonogramGrid(rowCount, colCount))}
-            >
-              {translations.interaction.manual}
-            </button>
+          </div>
+          <button
+            className="btn-interaction"
+            title={translations.interaction.random}
+            onClick={handleRandom}
+          >
+            {translations.interaction.random}
+          </button>
+          <button
+            className="btn-interaction"
+            title={translations.interaction.import}
+            onClick={() => setIsImportOpen(true)}
+          >
+            {translations.interaction.import}
+          </button>
+          <button
+            className="btn-interaction"
+            title={translations.interaction.manual}
+            onClick={() => setGrid(createEmptyNonogramGrid(rowCount, colCount))}
+          >
+            {translations.interaction.manual}
+          </button>
+          {/* Functional row */}
+          <span className="label-interaction">
+            <h2 className="text-2xl font-bold tracking-tight drop-shadow text-right">
+              {translations.interaction.functionalTitle}
+            </h2>
           </span>
-        </div>
-
-        {/* Functional Block */}
-        <div className="mb-3">
-          <span className="flex gap-4">
-            <span className="label-interaction">
-              <h2 className="text-2xl font-bold tracking-tight drop-shadow">
-                {translations.interaction.functionalTitle}
-              </h2>
-            </span>
-            <button
-              className="btn-interaction"
-              title={translations.interaction.validate}
-              onClick={handleValidate}
-            >
-              {translations.interaction.validate}
-            </button>
-            <button
-              className="btn-interaction"
-              title={translations.interaction.export}
-              onClick={handleExport}
-            >
-              {translations.interaction.export}
-            </button>
-            <button
-              className="btn-interaction"
-              title={translations.interaction.solve}
-              onClick={handleSolve}
-            >
-              {translations.interaction.solve}
-            </button>
-          </span>
+          <div /> {/* spacer — keeps button columns aligned */}
+          <button
+            className="btn-interaction"
+            title={translations.interaction.validate}
+            onClick={handleValidate}
+          >
+            {translations.interaction.validate}
+          </button>
+          <button
+            className="btn-interaction"
+            title={translations.interaction.export}
+            onClick={handleExport}
+          >
+            {translations.interaction.export}
+          </button>
+          <button
+            className="btn-interaction"
+            title={translations.interaction.solve}
+            onClick={handleSolve}
+          >
+            {translations.interaction.solve}
+          </button>
         </div>
       </section>
     </main>
