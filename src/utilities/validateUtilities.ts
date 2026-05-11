@@ -62,6 +62,38 @@ function runsMatch(actual: number[], expected: number[]): boolean {
 }
 
 /**
+ * Validates that all row and column clues can possibly be satisfied within the grid dimensions.
+ * Returns a ValidationResult with a boolean and a list of human-readable error messages.
+ */
+export function validateRules(model: NonogramGridModel): ValidationResult {
+  const errors: string[] = [];
+
+  for (let r = 0; r < model.rowClues.length; r++) {
+    const { leadX, numbers, trailX } = parseClueWithHints(model.rowClues[r]);
+    const minRequired =
+      leadX + trailX + numbers.reduce((s, n) => s + n, 0) + Math.max(0, numbers.length - 1);
+    if (minRequired > model.cols) {
+      errors.push(
+        `Row ${r + 1}: clue requires at least ${minRequired} cells but grid has only ${model.cols} column(s)`
+      );
+    }
+  }
+
+  for (let c = 0; c < model.colClues.length; c++) {
+    const { leadX, numbers, trailX } = parseClueWithHints(model.colClues[c]);
+    const minRequired =
+      leadX + trailX + numbers.reduce((s, n) => s + n, 0) + Math.max(0, numbers.length - 1);
+    if (minRequired > model.rows) {
+      errors.push(
+        `Column ${c + 1}: clue requires at least ${minRequired} cells but grid has only ${model.rows} row(s)`
+      );
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+/**
  * Validates the current cell state of a NonogramGrid against its row and column clues.
  * Returns a ValidationResult with a boolean and a list of human-readable error messages.
  */

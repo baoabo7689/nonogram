@@ -48,9 +48,14 @@ row clue = 3X 1 1 mean = X X X and [1 1] clue for that row
 apply for random grid 
 
 
+create method validateRules that validate all rules can be satisfy or not
+
+
 
 
 =====================================================================================
+
+Plan to integrate below tricks and export planning, solution to md file in folder docs.
 https://nonograms-katana.fandom.com/wiki/Tips_for_solving
 We can trim line by:
 	Reduce crossed cells that start right the begin, and end right the end of line.
@@ -73,6 +78,8 @@ the overlap between ranges [start-begin, start-begin + first number] and [start-
 should be Filled.
 and do the same with end:
 endRemain = [line length, we trim crossed cells at begin/end] - sum [clue and space except last number]
+
+[OverlappingTrick can be work with Simple crosses trick, to mark some center cells Filled]
 
 
 Spreading trick:
@@ -98,19 +105,20 @@ Khi này 2 ô Filled sẽ tương ứng 2 num1-num2, và ta fill các cell tươ
 
 
 
+https://nonogramonline.app/blog/how-to-solve-nonogram-step-by-step-guide-for-beginners
+Remain trick:
+If row already pass clues [filled cells form correct pattern with clue], remain cells must be Crossed 
+
+
+
+Sau khi áp dụng các tricks trên với số lần = Math(rows, cols) nếu còn ô chưa xác định giá trị thì áp dụng trick sau
+
 Contradictions trick 
 Giữ cell hiện tại không filled [Crossed]
 -> next cell 
 -> end: nếu thỏa -> solved 
 -> end: nếu không thỏa -> back tracking cho tới khi thỏa
 [back tracking = set previous cell Filled, reset all next cells = Crossed]
-
-
-
-
-https://nonogramonline.app/blog/how-to-solve-nonogram-step-by-step-guide-for-beginners
-Remain trick:
-If row already pass clues [filled cells form correct pattern with clue], remain cells must be Crossed 
 
 
 
