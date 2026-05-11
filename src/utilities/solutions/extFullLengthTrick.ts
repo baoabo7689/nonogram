@@ -66,7 +66,7 @@ function getTrimmedBounds(line: CellState[]): { start: number; end: number } | n
  * Cells already set are overwritten only by this rule's result.
  */
 export function solveFullLength_Extend(model: NonogramGridModel): FullLengthResult {
-  let cells: CellState[][] = model.cells.map((row) => [...row]);
+  let cells: CellState[][] = model.cells.map((row) => row.map((cell) => cell.state));
   const solvedCells: SolvedCell[] = [];
   const errors: string[] = [];
 
@@ -151,5 +151,15 @@ export function solveFullLength_Extend(model: NonogramGridModel): FullLengthResu
     messageParts.push(errors.join('\n'));
   }
 
-  return { model: { ...model, cells }, solvedCells, errors, message: messageParts.join('\n') };
+  // Convert CellState[][] back to Cell[][]
+  const convertedCells = cells.map((row, r) =>
+    row.map((state, c) => ({ ...model.cells[r][c], state }))
+  );
+
+  return {
+    model: { ...model, cells: convertedCells },
+    solvedCells,
+    errors,
+    message: messageParts.join('\n'),
+  };
 }

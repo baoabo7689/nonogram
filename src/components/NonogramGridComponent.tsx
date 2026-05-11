@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useRef } from 'react';
-import { CellState, NonogramGridModel } from '@/models/NonogramGridModel';
+import { CellState, Cell, NonogramGridModel } from '@/models/NonogramGridModel';
 
 interface Props {
   model: NonogramGridModel;
@@ -39,7 +39,7 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
       const trimmed = raw.trim();
       const state: CellState = valueToState[trimmed] ?? 'empty';
       const newCells = cells.map((row, ri) =>
-        ri === r ? row.map((cell, ci) => (ci === c ? state : cell)) : row
+        ri === r ? row.map((cell, ci) => (ci === c ? { ...cell, state } : cell)) : row
       );
       onChange({ ...model, cells: newCells });
     },
@@ -50,9 +50,9 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
   const handleCellClick = useCallback(
     (r: number, c: number) => {
       const cycle: CellState[] = ['empty', 'filled', 'crossed'];
-      const next = cycle[(cycle.indexOf(cells[r][c]) + 1) % 3];
+      const next = cycle[(cycle.indexOf(cells[r][c].state) + 1) % 3];
       const newCells = cells.map((row, ri) =>
-        ri === r ? row.map((cell, ci) => (ci === c ? next : cell)) : row
+        ri === r ? row.map((cell, ci) => (ci === c ? { ...cell, state: next } : cell)) : row
       );
       onChange({ ...model, cells: newCells });
     },
@@ -149,20 +149,20 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
               </td>
 
               {/* cells */}
-              {row.map((state, c) => (
+              {row.map((cell, c) => (
                 <td key={c} style={{ width: CELL_SIZE, height: CELL_SIZE, padding: 1 }}>
                   <input
                     type="text"
                     maxLength={1}
-                    value={cellValue[state]}
+                    value={cellValue[cell.state]}
                     onClick={() => handleCellClick(r, c)}
                     onChange={(e) => handleCellChange(r, c, e.target.value)}
                     className={`
                       w-full h-full border border-gray-400 rounded
                       text-center text-xs font-bold cursor-pointer
                       focus:outline-none focus:ring-1 focus:ring-gray-500
-                      ${cellBg[state]}
-                      ${state === 'filled' ? 'text-white' : state === 'crossed' ? 'text-white' : 'text-gray-800'}
+                      ${cellBg[cell.state]}
+                      ${cell.state === 'filled' ? 'text-white' : cell.state === 'crossed' ? 'text-white' : 'text-gray-800'}
                     `}
                     style={{ width: CELL_SIZE, height: CELL_SIZE }}
                     readOnly={false}

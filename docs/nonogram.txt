@@ -49,7 +49,10 @@ apply for random grid
 
 
 create method validateRules that validate all rules can be satisfy or not
+implement Two-pass trim into separated file in folder solutions
 
+change data type of cells to contain reference clue index in line, containt rowPos, colPos
+add property: #sym:rowClues _InNums and col in nums to prevent duplicate parse clues to nums
 
 
 

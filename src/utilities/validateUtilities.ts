@@ -1,4 +1,4 @@
-import { CellState, NonogramGridModel } from '@/models/NonogramGridModel';
+import { CellState, Cell, NonogramGridModel } from '@/models/NonogramGridModel';
 
 export interface ValidationResult {
   valid: boolean;
@@ -41,11 +41,11 @@ function parseClueWithHints(clue: string): { leadX: number; numbers: number[]; t
 }
 
 /** Compute the actual run-length encoding of a line of cells. */
-function computeRuns(line: CellState[]): number[] {
+function computeRuns(line: Cell[]): number[] {
   const runs: number[] = [];
   let count = 0;
   for (const cell of line) {
-    if (cell === 'filled') {
+    if (cell.state === 'filled') {
       count++;
     } else if (count > 0) {
       runs.push(count);
@@ -103,12 +103,12 @@ export function validateNonogramGrid(model: NonogramGridModel): ValidationResult
   for (let r = 0; r < model.rows; r++) {
     const { leadX, numbers, trailX } = parseClueWithHints(model.rowClues[r]);
     for (let i = 0; i < leadX && i < model.cols; i++) {
-      if (model.cells[r][i] !== 'crossed')
+      if (model.cells[r][i].state !== 'crossed')
         errors.push(`Row ${r + 1}: cell ${i + 1} should be crossed (${leadX}X hint)`);
     }
     for (let i = 0; i < trailX && model.cols - 1 - i >= 0; i++) {
       const c = model.cols - 1 - i;
-      if (model.cells[r][c] !== 'crossed')
+      if (model.cells[r][c].state !== 'crossed')
         errors.push(`Row ${r + 1}: cell ${c + 1} should be crossed (trailing ${trailX}X hint)`);
     }
     const middle = model.cells[r].slice(leadX, model.cols - trailX);
@@ -122,12 +122,12 @@ export function validateNonogramGrid(model: NonogramGridModel): ValidationResult
     const col = model.cells.map((row) => row[c]);
     const { leadX, numbers, trailX } = parseClueWithHints(model.colClues[c]);
     for (let i = 0; i < leadX && i < model.rows; i++) {
-      if (col[i] !== 'crossed')
+      if (col[i].state !== 'crossed')
         errors.push(`Column ${c + 1}: cell ${i + 1} should be crossed (${leadX}X hint)`);
     }
     for (let i = 0; i < trailX && model.rows - 1 - i >= 0; i++) {
       const r = model.rows - 1 - i;
-      if (col[r] !== 'crossed')
+      if (col[r].state !== 'crossed')
         errors.push(`Column ${c + 1}: cell ${r + 1} should be crossed (trailing ${trailX}X hint)`);
     }
     const middle = col.slice(leadX, model.rows - trailX);

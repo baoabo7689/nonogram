@@ -1,9 +1,17 @@
 export type CellState = 'empty' | 'filled' | 'crossed';
 
+export interface Cell {
+  state: CellState;
+  rowPos: number; // position in the row (0 to cols-1)
+  colPos: number; // position in the column (0 to rows-1)
+  rowClueIdx?: number; // which row clue index this cell belongs to (undefined if not yet determined)
+  colClueIdx?: number; // which column clue index this cell belongs to (undefined if not yet determined)
+}
+
 export interface NonogramGridModel {
   rows: number;
   cols: number;
-  cells: CellState[][];
+  cells: Cell[][];
   rowClues: string[];
   colClues: string[];
 }
@@ -84,20 +92,25 @@ export function createRandomNonogramGrid(
   );
 
   // Build starting grid: pre-mark hinted crossed cells, rest empty
-  const cells: CellState[][] = Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => 'empty' as CellState)
+  const cells: Cell[][] = Array.from({ length: rows }, (_, r) =>
+    Array.from({ length: cols }, (_, c) => ({
+      state: 'empty' as CellState,
+      rowPos: c,
+      colPos: r,
+    }))
   );
+
   for (let r = 0; r < rows; r++) {
     const lx = getLeadX(rowClues[r]);
-    for (let c = 0; c < lx; c++) cells[r][c] = 'crossed';
+    for (let c = 0; c < lx; c++) cells[r][c].state = 'crossed';
     const tx = getTrailX(rowClues[r]);
-    for (let c = cols - tx; c < cols; c++) cells[r][c] = 'crossed';
+    for (let c = cols - tx; c < cols; c++) cells[r][c].state = 'crossed';
   }
   for (let c = 0; c < cols; c++) {
     const lx = getLeadX(colClues[c]);
-    for (let r = 0; r < lx; r++) cells[r][c] = 'crossed';
+    for (let r = 0; r < lx; r++) cells[r][c].state = 'crossed';
     const tx = getTrailX(colClues[c]);
-    for (let r = rows - tx; r < rows; r++) cells[r][c] = 'crossed';
+    for (let r = rows - tx; r < rows; r++) cells[r][c].state = 'crossed';
   }
 
   return { rows, cols, cells, rowClues, colClues };
@@ -106,8 +119,12 @@ export function createRandomNonogramGrid(
 export function clearNonogramGrid(model: NonogramGridModel): NonogramGridModel {
   return {
     ...model,
-    cells: Array.from({ length: model.rows }, () =>
-      Array.from({ length: model.cols }, () => 'empty' as CellState)
+    cells: Array.from({ length: model.rows }, (_, r) =>
+      Array.from({ length: model.cols }, (_, c) => ({
+        state: 'empty' as CellState,
+        rowPos: c,
+        colPos: r,
+      }))
     ),
   };
 }
@@ -116,8 +133,12 @@ export function createEmptyNonogramGrid(rows: number, cols: number): NonogramGri
   return {
     rows,
     cols,
-    cells: Array.from({ length: rows }, () =>
-      Array.from({ length: cols }, () => 'empty' as CellState)
+    cells: Array.from({ length: rows }, (_, r) =>
+      Array.from({ length: cols }, (_, c) => ({
+        state: 'empty' as CellState,
+        rowPos: c,
+        colPos: r,
+      }))
     ),
     rowClues: Array.from({ length: rows }, () => ''),
     colClues: Array.from({ length: cols }, () => ''),

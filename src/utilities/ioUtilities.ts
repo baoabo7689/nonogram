@@ -1,4 +1,4 @@
-import { CellState, NonogramGridModel } from '@/models/NonogramGridModel';
+import { CellState, Cell, NonogramGridModel } from '@/models/NonogramGridModel';
 
 const cellStateCodeMap: Record<CellState, string> = {
   empty: 'E',
@@ -15,8 +15,8 @@ function formatClueLine(clues: string[]): string {
   return `[${clues.map((clue) => formatClueGroup(clue)).join(' ')}]`;
 }
 
-function formatGridRow(row: CellState[]): string {
-  return `[${row.map((cell) => cellStateCodeMap[cell]).join(' ')}]`;
+function formatGridRow(row: Cell[]): string {
+  return `[${row.map((cell) => cellStateCodeMap[cell.state]).join(' ')}]`;
 }
 
 function parseClueLine(line: string, separator = ' '): string[] {
@@ -69,18 +69,27 @@ export function importNonogramGrid(serialized: string): NonogramGridModel {
 
   const rowClues = parseClueLine(lines[0]);
   const colClues = parseClueLine(lines[1], '\n');
-  const cells = lines.slice(2).map(parseGridRow);
+  const parsedStates = lines.slice(2).map(parseGridRow);
 
-  const rows = cells.length;
+  const rows = parsedStates.length;
   const cols = colClues.length;
 
   if (rows !== rowClues.length) {
     throw new Error('Invalid nonogram data: row clue count does not match grid height.');
   }
 
-  if (cells.some((row) => row.length !== cols)) {
+  if (parsedStates.some((row) => row.length !== cols)) {
     throw new Error('Invalid nonogram data: grid row width does not match column clue count.');
   }
+
+  // Convert parsed CellState[][] into Cell[][] with position info
+  const cells: Cell[][] = parsedStates.map((row, r) =>
+    row.map((state, c) => ({
+      state,
+      rowPos: c,
+      colPos: r,
+    }))
+  );
 
   return {
     rows,
