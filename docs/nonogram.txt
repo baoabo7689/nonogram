@@ -197,6 +197,23 @@ that not exceed previous and next filled cells
 
 
 
+add MaxLengthMethod to _4_xxxx file:
+when total space of clues and spaces between clue equal to length of trimmed line 
+then cells must be filled in the order of clues
+
+
+
+add OverlappingMethod to _5_xxxx file:
+calculate length_for_first = trimmer line length - [total clues + spacing - first clue]
+first_clue = first clue
+first group must go from 
+[0, first_clue - 1] or [length_for_first - first_clue, length_for_first - 1]
+the Overlapping between 2 ranges must be filled 
+do the same for the last 
+
+
+
+
 
 
 
