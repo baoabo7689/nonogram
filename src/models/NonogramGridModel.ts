@@ -8,12 +8,20 @@ export interface Cell {
   colClueIdx?: number; // which column clue index this cell belongs to (undefined if not yet determined)
 }
 
+export interface ClueInfo {
+  trimmedClues: number[]; // parsed clues after trimming, to prevent duplicate parses
+  start: number; // start position after trim
+  end: number; // end position after trim
+}
+
 export interface NonogramGridModel {
   rows: number;
   cols: number;
   cells: Cell[][];
   rowClues: string[];
   colClues: string[];
+  rowInfo: ClueInfo[];
+  colInfo: ClueInfo[];
 }
 
 function computeClueString(line: boolean[], separator = ' ', withHints = false): string {
@@ -113,7 +121,7 @@ export function createRandomNonogramGrid(
     for (let r = rows - tx; r < rows; r++) cells[r][c].state = 'crossed';
   }
 
-  return { rows, cols, cells, rowClues, colClues };
+  return { rows, cols, cells, rowClues, colClues, rowInfo: [], colInfo: [] };
 }
 
 export function clearNonogramGrid(model: NonogramGridModel): NonogramGridModel {
@@ -142,5 +150,7 @@ export function createEmptyNonogramGrid(rows: number, cols: number): NonogramGri
     ),
     rowClues: Array.from({ length: rows }, () => ''),
     colClues: Array.from({ length: cols }, () => ''),
+    rowInfo: [],
+    colInfo: [],
   };
 }

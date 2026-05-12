@@ -172,6 +172,29 @@ After each row update, scan the affected columns for new overlaps, then return t
 =====================================================================================
 
 
+create properties rowInfo is array of info include
+[trimmedClues is number array to prevent duplicate parses, start-end range after trim]
+same with colInfo
+
+
+
+
+
+
+
+=====================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
