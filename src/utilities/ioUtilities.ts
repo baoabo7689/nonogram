@@ -1,5 +1,5 @@
 import { CellState, Cell, NonogramGridModel } from '@/models/NonogramGridModel';
-import { initRowColInfo } from '@/utilities/solutions/initRowColInfo';
+import { initRowColInfo } from '@/utilities/solutions/_1_initRowColInfo';
 
 const cellStateCodeMap: Record<CellState, string> = {
   empty: 'E',

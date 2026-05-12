@@ -1,5 +1,5 @@
 import { CellState, ClueInfo, NonogramGridModel } from '@/models/NonogramGridModel';
-import { trimLine } from '@/utilities/solutions/trimLine';
+import { trimLine } from '@/utilities/solutions/_2_trimLine';
 
 function cloneClueInfo(info: ClueInfo): ClueInfo {
   return {
