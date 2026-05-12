@@ -1,4 +1,5 @@
 import { CellState, Cell, NonogramGridModel } from '@/models/NonogramGridModel';
+import { initRowColInfo } from '@/utilities/solutions/initRowColInfo';
 
 const cellStateCodeMap: Record<CellState, string> = {
   empty: 'E',
@@ -91,11 +92,13 @@ export function importNonogramGrid(serialized: string): NonogramGridModel {
     }))
   );
 
-  return {
+  return initRowColInfo({
     rows,
     cols,
     cells,
     rowClues,
     colClues,
-  };
+    rowInfo: [],
+    colInfo: [],
+  });
 }

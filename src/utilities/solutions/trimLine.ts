@@ -1,136 +1,156 @@
-import { CellState } from '@/models/NonogramGridModel';
+import { CellState, ClueInfo } from '@/models/NonogramGridModel';
 
-export interface TrimResult {
-  trimmedLine: CellState[];
-  trimmedClues: number[];
-  startOffset: number; // index in original line where trimmed line starts
-  endOffset: number; // index in original line where trimmed line ends
+export interface TrimLineResult {
+  line: CellState[];
+  clueInfo: ClueInfo;
+  changed: boolean;
 }
 
-/**
- * Two-pass trim
- *
- * Pass 1: Trim crossed cells from both ends
- * - Find first index where cell != 'crossed'
- * - Find last index where cell != 'crossed'
- *
- * Pass 2: Trim confirmed filled groups
- * - From left: if cells[start..start+clues[0]-1] are all 'filled'
- *   AND cells[start+clues[0]] == 'crossed' (or out of range)
- *   → advance start by clues[0]+1, remove clues[0] from clues front
- * - From right: symmetric process
- *
- * Returns:
- * - trimmedLine: the sub-range after both passes
- * - trimmedClues: clues with confirmed groups removed
- * - startOffset: index in original line where trimmed line starts
- * - endOffset: index in original line where trimmed line ends
- */
-export function trimLine(line: CellState[], clues: number[]): TrimResult {
-  if (clues.length === 0) {
-    return {
-      trimmedLine: line,
-      trimmedClues: clues,
-      startOffset: 0,
-      endOffset: line.length - 1,
-    };
+function cloneClueInfo(clueInfo: ClueInfo): ClueInfo {
+  return {
+    trimmedClues: [...clueInfo.trimmedClues],
+    start: clueInfo.start,
+    end: clueInfo.end,
+  };
+}
+
+function hasNoClues(clueInfo: ClueInfo): boolean {
+  return clueInfo.trimmedClues.length === 0 || clueInfo.trimmedClues[0] === 0;
+}
+
+function normalizeClues(clues: number[]): number[] {
+  return clues.length === 0 ? [0] : clues;
+}
+
+function trimCrossedEdges(line: CellState[], clueInfo: ClueInfo): boolean {
+  let changed = false;
+
+  while (clueInfo.start <= clueInfo.end && line[clueInfo.start] === 'crossed') {
+    clueInfo.start++;
+    changed = true;
   }
 
-  // Pass 1: Trim crossed cells from both ends
-  let start = 0;
-  let end = line.length - 1;
-
-  while (start <= end && line[start] === 'crossed') {
-    start++;
-  }
-  while (end >= start && line[end] === 'crossed') {
-    end--;
+  while (clueInfo.end >= clueInfo.start && line[clueInfo.end] === 'crossed') {
+    clueInfo.end--;
+    changed = true;
   }
 
-  if (start > end) {
-    // All crossed
-    return {
-      trimmedLine: [],
-      trimmedClues: clues,
-      startOffset: 0,
-      endOffset: -1,
-    };
+  return changed;
+}
+
+function consumeLeftConfirmedGroup(line: CellState[], clueInfo: ClueInfo): boolean {
+  if (clueInfo.start > clueInfo.end || hasNoClues(clueInfo)) {
+    return false;
   }
 
-  // Pass 2: Trim confirmed filled groups from both ends
-  let cluesLeft = [...clues];
-
-  // From left: check if first clue is completely filled and followed by crossed
-  while (cluesLeft.length > 0) {
-    const firstClueSize = cluesLeft[0];
-    if (start + firstClueSize - 1 > end) {
-      // Not enough space for this clue
-      break;
-    }
-
-    // Check if all cells from start to start+firstClueSize-1 are 'filled'
-    const allFilled = line.slice(start, start + firstClueSize).every((cell) => cell === 'filled');
-
-    if (!allFilled) {
-      break;
-    }
-
-    // Check if the cell after the group is 'crossed' or out of range
-    const nextCell = start + firstClueSize;
-    const isFollowedByCrossOrEnd = nextCell > end || line[nextCell] === 'crossed';
-
-    if (!isFollowedByCrossOrEnd) {
-      break;
-    }
-
-    // This group is confirmed; trim it
-    start = nextCell + 1;
-    cluesLeft.shift();
+  const firstClue = clueInfo.trimmedClues[0];
+  if (firstClue <= 0) {
+    return false;
   }
 
-  // From right: check if last clue is completely filled and preceded by crossed
-  while (cluesLeft.length > 0) {
-    const lastClueSize = cluesLeft[cluesLeft.length - 1];
-    if (end - lastClueSize + 1 < start) {
-      // Not enough space for this clue
-      break;
-    }
-
-    // Check if all cells from end-lastClueSize+1 to end are 'filled'
-    const allFilled = line
-      .slice(end - lastClueSize + 1, end + 1)
-      .every((cell) => cell === 'filled');
-
-    if (!allFilled) {
-      break;
-    }
-
-    // Check if the cell before the group is 'crossed' or out of range
-    const prevCell = end - lastClueSize;
-    const isPrecededByCrossOrStart = prevCell < start || line[prevCell] === 'crossed';
-
-    if (!isPrecededByCrossOrStart) {
-      break;
-    }
-
-    // This group is confirmed; trim it
-    end = prevCell - 1;
-    cluesLeft.pop();
+  let filledCount = 0;
+  while (
+    clueInfo.start + filledCount <= clueInfo.end &&
+    line[clueInfo.start + filledCount] === 'filled'
+  ) {
+    filledCount++;
   }
 
-  if (start > end) {
-    return {
-      trimmedLine: [],
-      trimmedClues: cluesLeft,
-      startOffset: start,
-      endOffset: end,
-    };
+  if (filledCount !== firstClue) {
+    return false;
+  }
+
+  const nextIndex = clueInfo.start + firstClue;
+  if (nextIndex <= clueInfo.end) {
+    if (line[nextIndex] === 'filled') {
+      return false;
+    }
+    if (line[nextIndex] !== 'crossed') {
+      line[nextIndex] = 'crossed';
+    }
+    clueInfo.start = nextIndex + 1;
+  } else {
+    clueInfo.start = nextIndex;
+  }
+
+  clueInfo.trimmedClues = normalizeClues(clueInfo.trimmedClues.slice(1));
+  return true;
+}
+
+function consumeRightConfirmedGroup(line: CellState[], clueInfo: ClueInfo): boolean {
+  if (clueInfo.start > clueInfo.end || hasNoClues(clueInfo)) {
+    return false;
+  }
+
+  const lastClue = clueInfo.trimmedClues[clueInfo.trimmedClues.length - 1];
+  if (lastClue <= 0) {
+    return false;
+  }
+
+  let filledCount = 0;
+  while (
+    clueInfo.end - filledCount >= clueInfo.start &&
+    line[clueInfo.end - filledCount] === 'filled'
+  ) {
+    filledCount++;
+  }
+
+  if (filledCount !== lastClue) {
+    return false;
+  }
+
+  const prevIndex = clueInfo.end - lastClue;
+  if (prevIndex >= clueInfo.start) {
+    if (line[prevIndex] === 'filled') {
+      return false;
+    }
+    if (line[prevIndex] !== 'crossed') {
+      line[prevIndex] = 'crossed';
+    }
+    clueInfo.end = prevIndex - 1;
+  } else {
+    clueInfo.end = prevIndex;
+  }
+
+  clueInfo.trimmedClues = normalizeClues(clueInfo.trimmedClues.slice(0, -1));
+  return true;
+}
+
+export function trimLine(line: CellState[], clueInfo: ClueInfo): TrimLineResult {
+  const nextLine = [...line];
+  const nextClueInfo = cloneClueInfo(clueInfo);
+  let changed = false;
+  let progress = true;
+
+  while (progress) {
+    progress = false;
+
+    if (trimCrossedEdges(nextLine, nextClueInfo)) {
+      changed = true;
+      progress = true;
+    }
+
+    if (consumeLeftConfirmedGroup(nextLine, nextClueInfo)) {
+      changed = true;
+      progress = true;
+      continue;
+    }
+
+    if (consumeRightConfirmedGroup(nextLine, nextClueInfo)) {
+      changed = true;
+      progress = true;
+    }
+  }
+
+  if (nextClueInfo.start > nextClueInfo.end) {
+    nextClueInfo.trimmedClues = normalizeClues(
+      hasNoClues(nextClueInfo) ? [] : nextClueInfo.trimmedClues
+    );
   }
 
   return {
-    trimmedLine: line.slice(start, end + 1),
-    trimmedClues: cluesLeft,
-    startOffset: start,
-    endOffset: end,
+    line: nextLine,
+    clueInfo: nextClueInfo,
+    changed,
   };
 }

@@ -171,13 +171,16 @@ After each row update, scan the affected columns for new overlaps, then return t
 
 =====================================================================================
 
-
 create properties rowInfo is array of info include
 [trimmedClues is number array to prevent duplicate parses, start-end range after trim]
 same with colInfo
+in #sym:initRowColInfo  we will trim NX at start/end each clue, and assign cell in grid with crossed value
+use initRowColInfo in #sym:solveNonogram 
 
-
-
+add trimLine method: update ClueInfo of [rows, cols] start/end base on: reduced start /end crossed cells,
+and [reduced consecutive filled cells at starts/ends that reach number in clue, then add crossed cell]
+continue when can apply next.
+use trimLine in #sym:solveNonogram 
 
 
 
