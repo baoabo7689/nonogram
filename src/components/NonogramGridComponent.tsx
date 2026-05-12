@@ -150,7 +150,15 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
 
               {/* cells */}
               {row.map((cell, c) => (
-                <td key={c} style={{ width: CELL_SIZE, height: CELL_SIZE, padding: 1 }}>
+                <td
+                  key={c}
+                  style={{
+                    padding: 1,
+                    verticalAlign: 'middle',
+                    whiteSpace: 'nowrap',
+                    textAlign: 'right',
+                  }}
+                >
                   <input
                     type="text"
                     maxLength={1}
@@ -158,6 +166,7 @@ export default function NonogramGridComponent({ model, onChange }: Props) {
                     onClick={() => handleCellClick(r, c)}
                     onChange={(e) => handleCellChange(r, c, e.target.value)}
                     className={`
+                      block p-0.5
                       w-full h-full border border-gray-400 rounded
                       text-center text-xs font-bold cursor-pointer
                       focus:outline-none focus:ring-1 focus:ring-gray-500

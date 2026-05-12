@@ -1,5 +1,5 @@
 import { NonogramGridModel } from '@/models/NonogramGridModel';
-import { trimLine } from '@/utilities/solutions/_2_trimLine';
+import { simpleCrossesMethod } from '@/utilities/solutions/_3_simpleCrossesMethod';
 import {
   cloneClueInfo,
   getRowStates,
@@ -8,7 +8,7 @@ import {
   setColStates,
 } from '@/utilities/solutions/_0_sharedMethods';
 
-export function applyTrimLines(model: NonogramGridModel): {
+export function applySimpleCrossesMethod(model: NonogramGridModel): {
   model: NonogramGridModel;
   changedLines: number;
 } {
@@ -26,23 +26,27 @@ export function applyTrimLines(model: NonogramGridModel): {
     progress = false;
 
     for (let rowIndex = 0; rowIndex < nextModel.rows; rowIndex++) {
-      const result = trimLine(getRowStates(nextModel, rowIndex), nextModel.rowInfo[rowIndex]);
+      const result = simpleCrossesMethod(
+        getRowStates(nextModel, rowIndex),
+        nextModel.rowInfo[rowIndex]
+      );
       if (!result.changed) {
         continue;
       }
       setRowStates(nextModel, rowIndex, result.line);
-      nextModel.rowInfo[rowIndex] = result.clueInfo;
       changedLines++;
       progress = true;
     }
 
     for (let colIndex = 0; colIndex < nextModel.cols; colIndex++) {
-      const result = trimLine(getColStates(nextModel, colIndex), nextModel.colInfo[colIndex]);
+      const result = simpleCrossesMethod(
+        getColStates(nextModel, colIndex),
+        nextModel.colInfo[colIndex]
+      );
       if (!result.changed) {
         continue;
       }
       setColStates(nextModel, colIndex, result.line);
-      nextModel.colInfo[colIndex] = result.clueInfo;
       changedLines++;
       progress = true;
     }

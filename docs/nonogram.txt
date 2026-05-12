@@ -183,6 +183,25 @@ continue when can apply next.
 use trimLine in #sym:solveNonogram 
 
 
+add SimpleCrossesMethod to _3_xxxx file:
+loop through each trimmed line from start - to end,
+if filled cells count = number of clues
+and each gap [i, i+1] > num[i] and num[i+1]
+then mark filled match with clue[i] 
+For each filled cell we will crossed 
+outside [p(i) - clue[i] + 1 .. p(i) + clue[i] - 1]
+and outside [p(i+1) - clue[i+1] + 1 .. p(i+1) + clue[i+1] - 1]
+that not exceed previous and next filled cells 
+2 1 2
+3 2
+
+
+
+
+
+
+
+
 
 
 =====================================================================================

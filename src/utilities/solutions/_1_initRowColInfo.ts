@@ -119,10 +119,10 @@ export function initRowColInfo(model: NonogramGridModel): NonogramGridModel {
   return {
     ...model,
     cells,
-    rowClues,
-    colClues,
-    rowInfo,
-    colInfo,
+    rowClues: model.rowClues, // keep original clues for reference, but use normalized clues for info
+    colClues: model.colClues, // keep original clues for reference, but use normalized clues for info
+    rowInfo, // use this to process next solve steps
+    colInfo, // use this to process next solve steps
   };
 }
 

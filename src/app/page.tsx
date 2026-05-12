@@ -11,9 +11,9 @@ import ImportComponent from '@/components/ImportComponent';
 
 export default function HomePage() {
   const { translations } = useLanguage();
-  const [rowCount, setRowCount] = useState(10);
-  const [colCount, setColCount] = useState(10);
-  const [grid, setGrid] = useState(() => createEmptyNonogramGrid(10, 10));
+  const [rowCount, setRowCount] = useState(15);
+  const [colCount, setColCount] = useState(15);
+  const [grid, setGrid] = useState(() => createEmptyNonogramGrid(15, 15));
   const [isImportOpen, setIsImportOpen] = useState(false);
   const [message, setMessage] = useState('');
 
