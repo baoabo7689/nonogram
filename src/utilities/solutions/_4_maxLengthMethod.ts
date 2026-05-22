@@ -1,12 +1,9 @@
 import { CellState, ClueInfo } from '@/models/NonogramGridModel';
+import { hasNoClues } from '@/utilities/solutions/_0_sharedMethods';
 
 export interface MaxLengthMethodResult {
   line: CellState[];
   changed: boolean;
-}
-
-function hasNoClues(clueInfo: ClueInfo): boolean {
-  return clueInfo.trimmedClues.length === 0 || clueInfo.trimmedClues[0] === 0;
 }
 
 function getRequiredLength(clues: number[]): number {

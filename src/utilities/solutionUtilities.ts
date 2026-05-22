@@ -4,6 +4,7 @@ import { applyTrimLines } from '@/utilities/solutions/_2_applyTrimLines';
 import { applySimpleCrossesMethod } from '@/utilities/solutions/_3_applySimpleCrossesMethod';
 import { applyMaxLengthMethod } from '@/utilities/solutions/_4_applyMaxLengthMethod';
 import { applyOverlappingMethod } from '@/utilities/solutions/_5_applyOverlappingMethod';
+import { applySpreadingMethod } from '@/utilities/solutions/_6_applySpreadingMethod';
 
 export interface SolveResult {
   solved: boolean;
@@ -17,10 +18,11 @@ export function solveNonogram(model: NonogramGridModel): SolveResult {
   const simpleCrossed = applySimpleCrossesMethod(trimmed.model);
   const maxLengthApplied = applyMaxLengthMethod(simpleCrossed.model);
   const overlappingApplied = applyOverlappingMethod(maxLengthApplied.model);
+  const spreadingApplied = applySpreadingMethod(overlappingApplied.model);
 
   return {
     solved: true,
-    model: overlappingApplied.model,
+    model: spreadingApplied.model,
     message: '',
   };
 }

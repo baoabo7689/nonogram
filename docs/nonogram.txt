@@ -213,6 +213,48 @@ do the same for the last
 
 
 
+add SpreadingMethod to _6_xxxx file:
+When a filled cell is near the edge of the trimmed line and must be part of
+the first (or last) clue, the clue extends further inward.
+
+[must be part of the first clue = distance from it to edge less than first clue
+or it already marked to first clue by SimpleCrossesMethod]
+
+**Algorithm:**
+
+```
+firstFilled = [cell that must be part of the first clue = first filled cell and [distance from it to edge less than or equal first clue
+or it already marked to first clue by SimpleCrossesMethod]]
+x = firstFilled - trimmedStart        (distance from left edge)
+ac = clues[0] - x
+if ac > 0:
+  → mark cells [firstFilled + 1 .. firstFilled + ac - 1] as 'filled'
+
+Symmetrically from right:
+lastFilled = last 'filled' index in trimmedLine
+x = trimmedEnd - lastFilled
+ac = clues[last] - x
+if ac > 0:
+  → mark cells [lastFilled - ac + 1 .. lastFilled - 1] as 'filled'
+```
+
+
+In Cell model already have rowClueIdx/colClueIdx to detect cell belong to first clue or not,
+no need use pins
+
+replace getColStates with something to get line with cell model
+[which have rowClueIdx/colClueIdx]
+4 3 1
+
+
+
+
+
+add JoiningSplittingMethod to _7_xxxx file:
+
+
+
+
 
 
 

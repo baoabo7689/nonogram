@@ -1,4 +1,5 @@
 import { CellState, ClueInfo } from '@/models/NonogramGridModel';
+import { hasNoClues } from '@/utilities/solutions/_0_sharedMethods';
 
 export interface TrimLineResult {
   line: CellState[];
@@ -12,10 +13,6 @@ function cloneClueInfo(clueInfo: ClueInfo): ClueInfo {
     start: clueInfo.start,
     end: clueInfo.end,
   };
-}
-
-function hasNoClues(clueInfo: ClueInfo): boolean {
-  return clueInfo.trimmedClues.length === 0 || clueInfo.trimmedClues[0] === 0;
 }
 
 function normalizeClues(clues: number[]): number[] {

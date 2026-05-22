@@ -1,5 +1,9 @@
 import { CellState, ClueInfo, NonogramGridModel } from '@/models/NonogramGridModel';
 
+export function hasNoClues(clueInfo: ClueInfo): boolean {
+  return clueInfo.trimmedClues.length === 0 || clueInfo.trimmedClues[0] === 0;
+}
+
 export function cloneClueInfo(info: ClueInfo): ClueInfo {
   return {
     trimmedClues: [...info.trimmedClues],
