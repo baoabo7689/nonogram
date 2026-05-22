@@ -249,8 +249,22 @@ replace getColStates with something to get line with cell model
 
 
 
+add SimpleCrossesMethod_Extends to _7_xxxx file:
+In SimpleCrossesMethod, instead check filled cells count = number of clues
+we count blocks of filled cells then check with = number of clues
+and each gap [i, i+1] > [num[i] and num[i+1], exclude filled count of 2 blocks]
+then mark block filled match with clue[i] 
+For each filled block we will crossed 
+outside [left of block[i] - filled count of block[i] - clue[i] + 1 .. right of block[i] - filled count of block[i] + clue[i] - 1]
+and outside [left of block[i+1] - filled count of block[i+1] - clue[i+1] + 1 .. right of block[i+1] - filled count of block[i+1] + clue[i+1] - 1]
+that not exceed previous and next filled cells 
 
-add JoiningSplittingMethod to _7_xxxx file:
+
+
+
+
+
+add JoiningSplittingMethod to _8_xxxx file:
 
 
 
