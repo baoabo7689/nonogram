@@ -8,6 +8,8 @@ import { applySpreadingMethod } from '@/utilities/solutions/_6_applySpreadingMet
 import { applySimpleCrossesMethodExtends } from '@/utilities/solutions/_7_applySimpleCrossesMethodExtends';
 import { applySplittingMethod } from '@/utilities/solutions/_8_applySplittingMethod';
 import { applyJoiningMethod } from '@/utilities/solutions/_9_applyJoiningMethod';
+import { applyKnownGroupMethod } from '@/utilities/solutions/_10_applyKnownGroupMethod';
+import { applyRemainMethod } from '@/utilities/solutions/_11_applyRemainMethod';
 
 export interface SolveResult {
   solved: boolean;
@@ -25,10 +27,12 @@ export function solveNonogram(model: NonogramGridModel): SolveResult {
   const simpleCrossesExtendsApplied = applySimpleCrossesMethodExtends(spreadingApplied.model);
   const splittingApplied = applySplittingMethod(simpleCrossesExtendsApplied.model);
   const joiningApplied = applyJoiningMethod(splittingApplied.model);
+  const knownGroupApplied = applyKnownGroupMethod(joiningApplied.model);
+  const remainApplied = applyRemainMethod(knownGroupApplied.model);
 
   return {
     solved: true,
-    model: joiningApplied.model,
+    model: remainApplied.model,
     message: '',
   };
 }

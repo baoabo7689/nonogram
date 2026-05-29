@@ -286,7 +286,28 @@ we should alse mark rowClueIdx or colClueIdx to the clue it match
 add KnownGroupMethod to _10_xxxx file and apply file, and use in solutionUtilities:
 continue to trick 9
 after determine each block match with clue i, 
-we will crossed cells far than clue[i] - block length 
+we will crossed cells far than clue[i] - block length.
+And if that block start/end from crossed cells [or an edge], we spread block to the remain cells need to Filled.
+
+
+add RemainMethod to _11_xxxx file and apply file, and use in solutionUtilities:
+Each line, when all clue blocks have been placed (filled cells already form the exact
+pattern described by the clues), every remaining `empty` cell must be `crossed`.
+
+
+in page.tsx, calculate n = max(row, col)
+we will call solveNonogram with n times, delay between each time is 3s.
+we will write to message to indicate what step currently doing, and we should stop solve if there no change detect
+
+
+
+add ContradictionsMethod to _12_xxxx file and apply file, and use in solutionUtilities:
+
+
+
+
+
+
 
 
 

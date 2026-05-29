@@ -16,6 +16,7 @@ export default function HomePage() {
   const [grid, setGrid] = useState(() => createEmptyNonogramGrid(15, 15));
   const [isImportOpen, setIsImportOpen] = useState(false);
   const [message, setMessage] = useState('');
+  const [isSolving, setIsSolving] = useState(false);
 
   const clampDimension = (value: number) => Math.max(1, value || 1);
   const handleRandom = () => {
@@ -41,10 +42,31 @@ export default function HomePage() {
       return false;
     }
   };
-  const handleSolve = () => {
-    const result = solveNonogram(grid);
-    setGrid(result.model);
-    setMessage(result.message);
+  const handleSolve = async () => {
+    const n = Math.max(grid.rows, grid.cols);
+    setIsSolving(true);
+    let current = grid;
+    for (let i = 0; i < n; i++) {
+      setMessage(`Step ${i + 1} / ${n}...`);
+      const result = solveNonogram(current);
+
+      const hasChanged = result.model.cells.some((row, r) =>
+        row.some((cell, c) => cell.state !== current.cells[r][c].state)
+      );
+
+      current = result.model;
+      setGrid(current);
+
+      if (!hasChanged) {
+        setMessage(`Step ${i + 1} / ${n} — no changes detected, solve complete.`);
+        break;
+      }
+
+      if (i < n - 1) {
+        await new Promise<void>((resolve) => setTimeout(resolve, 3000));
+      }
+    }
+    setIsSolving(false);
   };
 
   return (
@@ -129,8 +151,9 @@ export default function HomePage() {
             className="btn-interaction"
             title={translations.interaction.solve}
             onClick={handleSolve}
+            disabled={isSolving}
           >
-            {translations.interaction.solve}
+            {isSolving ? '...' : translations.interaction.solve}
           </button>
         </div>
       </section>
