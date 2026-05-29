@@ -262,12 +262,46 @@ that not exceed previous and next filled cells
 
 
 
+add SplittingMethod to _8_xxxx file and apply file, and use in solutionUtilities:
+**Split (cross the gap):**
+When two filled cells are separated by exactly one empty cell,
+that gap cell may force a cross if satisfied below condition:
+if cells[i] == 'filled' AND cells[i+1] == 'empty' AND cells[i+2] == 'filled':
+  groupLeft  = run length ending at i
+  groupRight = run length starting at i+2
+  merged     = groupLeft + 1 + groupRight
+  if merged > [clues of left group] OR merged > [clues of right group]:
+    → cells[i+1] = 'crossed'
+update SplittingMethod to _8_xxxx file
+	if we combine into merged and there is not clue >= merged, then cells[i+1] = 'crossed'
 
 
-add JoiningSplittingMethod to _8_xxxx file:
+add JoiningMethod to _9_xxxx file and apply file, and use in solutionUtilities:
+if in line, we calculate block of crossed cells [between have at least 1 filled cell]
+exactly = number of clue, then each parts must belong to clue in order and should connect filled cells together,
+it means cells between filled cells each part will be Filled.
+we should alse mark rowClueIdx or colClueIdx to the clue it match 
+
+
+add KnownGroupMethod to _10_xxxx file and apply file, and use in solutionUtilities:
+continue to trick 9
+after determine each block match with clue i, 
+we will crossed cells far than clue[i] - block length 
 
 
 
+
+
+
+
+
+=====================================================================================
+
+
+D:
+cd D:\Ps\BB\nonogram
+yarn
+yarn run dev 
 
 
 

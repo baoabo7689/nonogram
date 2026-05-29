@@ -5,6 +5,9 @@ import { applySimpleCrossesMethod } from '@/utilities/solutions/_3_applySimpleCr
 import { applyMaxLengthMethod } from '@/utilities/solutions/_4_applyMaxLengthMethod';
 import { applyOverlappingMethod } from '@/utilities/solutions/_5_applyOverlappingMethod';
 import { applySpreadingMethod } from '@/utilities/solutions/_6_applySpreadingMethod';
+import { applySimpleCrossesMethodExtends } from '@/utilities/solutions/_7_applySimpleCrossesMethodExtends';
+import { applySplittingMethod } from '@/utilities/solutions/_8_applySplittingMethod';
+import { applyJoiningMethod } from '@/utilities/solutions/_9_applyJoiningMethod';
 
 export interface SolveResult {
   solved: boolean;
@@ -19,10 +22,13 @@ export function solveNonogram(model: NonogramGridModel): SolveResult {
   const maxLengthApplied = applyMaxLengthMethod(simpleCrossed.model);
   const overlappingApplied = applyOverlappingMethod(maxLengthApplied.model);
   const spreadingApplied = applySpreadingMethod(overlappingApplied.model);
+  const simpleCrossesExtendsApplied = applySimpleCrossesMethodExtends(spreadingApplied.model);
+  const splittingApplied = applySplittingMethod(simpleCrossesExtendsApplied.model);
+  const joiningApplied = applyJoiningMethod(splittingApplied.model);
 
   return {
     solved: true,
-    model: spreadingApplied.model,
+    model: joiningApplied.model,
     message: '',
   };
 }
