@@ -301,18 +301,15 @@ we will write to message to indicate what step currently doing, and we should st
 
 
 
-add ContradictionsMethod to _12_xxxx file and apply file, and use in solutionUtilities:
-
-
-
-
-
-
-
-
-
-
-
+add ContradictionsMethod to _12_xxxx file and apply file, and use in page.tsx as brute-force method:
+Each cell can have value [Empty, Crossed, Filled]
+we will loop through each empty cell [Crossed and Filled cells will be keep unchanged from this process of trick], 
+change it value from Empty -> Crossed -> Filled
+check clue of row and column of that cell is matched or not.
+If match, we go to next empty cell.
+If not, we go back to previous cell: 
+If previous cell is Filled then reset it to empty and go back to previous cell,
+If previous cell is Crossed then change to Filled.
 
 
 
@@ -323,12 +320,6 @@ D:
 cd D:\Ps\BB\nonogram
 yarn
 yarn run dev 
-
-
-
-
-
-
 
 
 

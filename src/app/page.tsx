@@ -6,6 +6,7 @@ import { createEmptyNonogramGrid, createRandomNonogramGrid } from '@/models/Nono
 import NonogramGridComponent from '@/components/NonogramGridComponent';
 import { exportNonogramGrid, importNonogramGrid } from '@/utilities/ioUtilities';
 import { solveNonogram } from '@/utilities/solutionUtilities';
+import { applyContradictionsMethod } from '@/utilities/solutions/_12_applyContradictionsMethod';
 import { validateNonogramGrid } from '@/utilities/validateUtilities';
 import ImportComponent from '@/components/ImportComponent';
 
@@ -58,7 +59,7 @@ export default function HomePage() {
       setGrid(current);
 
       if (!hasChanged) {
-        setMessage(`Step ${i + 1} / ${n} — no changes detected, solve complete.`);
+        setMessage(`Step ${i + 1} / ${n} — no changes detected, switching to brute-force...`);
         break;
       }
 
@@ -66,6 +67,12 @@ export default function HomePage() {
         await new Promise<void>((resolve) => setTimeout(resolve, 3000));
       }
     }
+
+    setMessage('Brute-force solving...');
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    const bruteResult = applyContradictionsMethod(current);
+    setGrid(bruteResult.model);
+    setMessage(bruteResult.solved ? 'Brute-force complete.' : 'Brute-force: no solution found.');
     setIsSolving(false);
   };
 
